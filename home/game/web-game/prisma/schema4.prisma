@@ -1,0 +1,71 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../node_modules/@prisma/client4"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("CROSSDB_URL")
+}
+
+model GameRank {
+    //排行榜ID
+    id            Int      @id @default(autoincrement()) @db.UnsignedInt()
+    //排行榜类型
+    type          Int      @db.UnsignedSmallInt()
+    //角色ID
+    roleid        String   @db.Char(16)
+    //跨服服务器ID
+    crossServerid Int      @default(0) @db.UnsignedSmallInt()
+    //服务器ID
+    serverid      Int      @default(0) @db.UnsignedSmallInt()
+    //数值
+    val           Int      @default(0) @db.Int()
+    //扩展 战力相关信息 角色通用信息 角色名称 ICON  等级 战力
+    info          Json     @default("{}")
+    updatedAt     DateTime @default(now())
+
+    @@index([type, crossServerid])
+    @@index([type, crossServerid, val])
+}
+
+//聊天记录
+model ChatLog {
+    //日志ID
+    id            Int @id @default(autoincrement()) @db.UnsignedInt()
+    //跨服服务器ID
+    crossServerid Int @default(0) @db.UnsignedSmallInt()
+    //服务器ID
+    serverid      Int @default(0) @db.UnsignedSmallInt()
+    //聊天类型
+    type          Int @db.UnsignedSmallInt()
+
+    //发送者
+    sender String @default("") @db.VarChar(16)
+    //接受者
+    target String @default("") @db.VarChar(16)
+    //聊天内容
+    msg    String
+
+    //扩展 附加信息 发送者 头像 名称 等级
+    info Json @default("{}")
+
+    createdAt DateTime @default(now())
+
+    //updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+    @@index([crossServerid, createdAt])
+    @@index([crossServerid, sender, createdAt])
+}
+
+//服务器全局数据表
+model ServerInfo {
+    id            Int      @id @default(autoincrement())
+    //跨服服务器ID
+    crossServerid Int      @default(0) @db.UnsignedSmallInt()
+    info          Json     @default("{}")
+    nodeid        Int      @default(1) @db.UnsignedSmallInt()
+    updatedAt     DateTime @default(now())
+    createdAt     DateTime @default(now())
+
+    @@index([crossServerid])
+}

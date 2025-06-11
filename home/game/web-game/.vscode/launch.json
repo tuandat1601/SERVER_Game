@@ -1,0 +1,48 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach NestJS WS",
+            "port": 9229,
+            "restart": true,
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch web-game",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+
+            "program": "${workspaceFolder}/apps/web-game/src/main.ts",
+            "args": ["npx dotenv -e .dev.env cross-env RUNNING_ENV=dev RUNNING_NODE_ID=1  RUNNING_TYPE=GN",],
+            "preLaunchTask": "tsc: 构建 - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/dist/apps/web-game//**/*.js"
+            ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch web-log",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+
+            "program": "${workspaceFolder}/apps/web-log/src/main.ts",
+            "args": ["cross-env RUNNING_ENV=dev RUNNING_NODE_ID=1  RUNNING_TYPE=LOGN --debug --watch",],
+            "preLaunchTask": "tsc: 构建 - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/dist/apps/web-game//**/*.js"
+            ]
+        }
+
+    ]
+}

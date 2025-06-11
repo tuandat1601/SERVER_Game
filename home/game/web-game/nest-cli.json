@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/web-game/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "plugins": [
+      {
+        "name": "@nestjs/swagger",
+        "options": {
+          "classValidatorShim": false,
+          "introspectComments": true
+        }
+      }
+    ],
+    "webpack": true,
+    "tsConfigPath": "apps/web-game/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/web-game",
+  "projects": {
+    "web-game": {
+      "type": "application",
+      "root": "apps/web-game",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-game/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-game/tsconfig.app.json"
+      }
+    },
+    "web-save-data": {
+      "type": "application",
+      "root": "apps/web-save-data",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-save-data/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-save-data/tsconfig.app.json"
+      }
+    },
+    "web-log": {
+      "type": "application",
+      "root": "apps/web-log",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-log/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-log/tsconfig.app.json"
+      }
+    },
+    "web-backend": {
+      "type": "application",
+      "root": "apps/web-backend",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-backend/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-backend/tsconfig.app.json"
+      }
+    },
+    "web-chat": {
+      "type": "application",
+      "root": "apps/web-chat",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-chat/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-chat/tsconfig.app.json"
+      }
+    },
+    "web-cross-server": {
+      "type": "application",
+      "root": "apps/web-cross-server",
+      "entryFile": "main",
+      "sourceRoot": "apps/web-cross-server/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/web-cross-server/tsconfig.app.json"
+      }
+    }
+  }
+}

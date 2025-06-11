@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// 运行prisma migrate 生成数据表和 client：
+// npx prisma migrate dev --name init
+
+// 如果后续有修改schema.prisma ，那么需要重新生成数据表和client
+// npx prisma migrate dev --name change
+
+//迁移
+// npx prisma migrate dev --name prisma1_init --schema ./prisma/schema1.prisma
+// npx prisma migrate dev --name prisma2_init --schema ./prisma/schema2.prisma
+// 
+// npx prisma migrate dev --name prisma1_change --schema ./prisma/schema1.prisma
+// npx prisma migrate dev --name prisma2_change --schema ./prisma/schema2.prisma
+
+//生成
+// npx prisma generate --schema ./prisma/schema1.prisma
+// npx prisma generate --schema ./prisma/schema2.prisma
+// 日志数据库
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/client2"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("LOGDB_URL")
+}
+
+//@default(now())
+//登录日志
+model log_login {
+  id        Int      @id @default(autoincrement())
+  userid    String   @db.VarChar(64)
+  roleid    String   @default("0") @db.Char(16)
+  name      String   @db.VarChar(18)
+  serverid  Int      @default(0) @db.UnsignedSmallInt()
+  rolelevel Int      @default(0) @db.UnsignedMediumInt()
+  logtime   DateTime
+  ip        String   @db.VarChar(14)
+
+  @@index([logtime, serverid, roleid])
+}
+
+// //战斗日志
+// model log_fight {
+//   id          Int @id @default(autoincrement())
+//   logtime     DateTime
+//   name        String  @db.VarChar(24)
+//   roleid      String @default("0") @db.VarChar(18) 
+//   serverid    Int  @db.UnsignedSmallInt() @default(0)
+//   rolelevel   Int  @db.UnsignedMediumInt() @default(0)
+//   gamelevels  Int  @db.UnsignedSmallInt() @default(0)
+//   pos         Int  @db.UnsignedSmallInt() @default(0)
+//   iswin       Boolean 
+//   award       Json
+
+//   @@index([logtime,serverid,roleid])
+// }
+
+//玩家操作日志
+model log_gamesys {
+  id       Int      @id @default(autoincrement())
+  logtime  DateTime
+  name     String   @db.VarChar(18)
+  roleid   String   @default("0") @db.Char(16)
+  serverid Int      @default(0) @db.UnsignedSmallInt()
+  //操作类型
+  type     Int      @default(0) @db.UnsignedSmallInt()
+  //请求参数
+  req      Json
+  //描述
+  dec      String   @db.VarChar(24)
+
+  @@index([logtime, serverid, type])
+  @@index([logtime, serverid, roleid, type])
+}
+
+//装备变化日志
+model log_equip {
+  id       Int      @id @default(autoincrement())
+  logtime  DateTime
+  name     String   @db.VarChar(18)
+  roleid   String   @default("0") @db.Char(16)
+  serverid Int      @default(0) @db.UnsignedSmallInt()
+  //类型
+  type     Int      @default(0) @db.UnsignedSmallInt()
+  eid      String   @default("0") @db.VarChar(18)
+  equipid  Int      @default(0) @db.UnsignedInt()
+  entity   Json     @default("{}")
+  num      Int      @default(0)
+  //描述
+  dec      String   @db.VarChar(24)
+
+  @@index([logtime, serverid, equipid])
+  @@index([logtime, serverid, roleid, equipid])
+}
+
+model log_item {
+  id       Int      @id @default(autoincrement())
+  logtime  DateTime
+  name     String   @db.VarChar(18)
+  roleid   String   @default("0") @db.Char(16)
+  serverid Int      @default(0) @db.UnsignedSmallInt()
+  //类型
+  type     Int      @default(0) @db.UnsignedSmallInt()
+  itemid   Int      @default(0) @db.UnsignedInt()
+  change   Int      @default(0)
+  last     Int      @default(0) @db.UnsignedInt()
+  //描述
+  dec      String   @default("0") @db.VarChar(24)
+
+  @@index([logtime, serverid, itemid])
+  @@index([logtime, serverid, roleid, itemid])
+}
+
+//聊天记录
+model log_chat {
+  //日志ID
+  id       Int @id @default(autoincrement()) @db.UnsignedInt()
+  //服务器ID
+  serverid Int @default(0) @db.UnsignedSmallInt()
+  //聊天类型
+  type     Int @db.UnsignedSmallInt()
+
+  //发送者
+  sender String @db.VarChar(16)
+  //接受者
+  target String @default("") @db.Char(16)
+  //聊天内容
+  msg    String
+
+  createdAt DateTime @default(now())
+
+  //updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+  @@index([serverid, createdAt])
+  @@index([serverid, sender, createdAt])
+}

@@ -1,0 +1,139 @@
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+HƯỚNG DẪN CÀI ĐẶT BY SOURCEGAME.VN - YÊU CẦU HỆ ĐIỀU HÀNH CENTOS7.
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+Đầu tiên cài đặt aapanel:
+URL=https://www.aapanel.com/script/install_7.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_7.0_en.sh "$URL";fi;bash install_7.0_en.sh aapanel
+
+-> Hiện thông báo thì nhập y và Enter
+
+rm -f /www/server/panel/data/ssl.pl && /etc/init.d/bt restart
+
+bt 14
+
+Lưu thông tin rồi đăng nhập vào aapanel cài:
+
+Nginx 1.20
+MySQL 8.0
+
+PHP 7.4 [ Cài xong ấn vào -> chọn Install extensions -> Redis -> Cài xong F5 -> Ấn vào Redis -> Optimization điền 123456 -> Save rồi Restart ]
+
+Node.js [ Cài xong ấn vào -> Cài bừa 1 ver nào đó 2.2->2.4 Cài xong f5 chọn Settings -> Chọn All ver -> Chọn Update version list -> tìm cài v16.18.1 ]
+
+=============================================
+
+Đặt pass databases về: 123456
+
+Mở port: 1-65535
+
+Chạy lệnh tắt tường lửa:
+systemctl stop firewalld
+systemctl disable firewalld
+
+=============================================
+
+Upload file sourcegamevn.zip lên thư mục gốc vps ( / )
+
+Upload xong chạy lệnh giải nén:
+
+cd /
+unzip sourcegamevn.zip
+
+-> Nếu hiện thông báo thì nhập A và Enter
+
+=============================================
+
+Chạy lệnh cấp quyền 777:
+
+chmod 777 -R /home
+chmod 777 -R /www/wwwroot/game
+
+=============================================
+
+Thay ip 192.168.200.129 về ip vps
+
+/home/game/web-game/prisma/seed3.ts
+
+/www/server/web-mobile/assets/main/index.js
+
+/www/server/nginx/conf/nginx.conf
+
+/www/wwwroot/game/ht/user/playerapi.php
+
+/home/sql/lyz_wgbackend.sql
+
+=============================================
+
+Chạy lệnh tạo sql:
+
+cd /home && ./sk.sh
+
+=============================================
+
+Tạo website (trên aapanel)
+
+IPVPS:81
+/www/wwwroot/game
+
+=============================================
+
+Tìm sửa file /root/.bash_profile -> thêm đoạn dưới vào dòng 10 rồi Save
+PATH=$PATH:$HOME/bin:/www/server/nodejs/v16.18.1/bin
+
+Tìm sửa file /etc/profile -> thêm đoạn dưới vào dòng cuối
+export PATH=$PATH:/www/server/nodejs/v16.18.1/bin
+
+Xong chạy lệnh:
+
+source /etc/profile
+
+/etc/init.d/nginx restart
+
+cd /home/game/web-game && tar -zxvf node_modules.tar.gz
+
+chmod 777 -R /home/game/web-game/node_modules
+
+cd /home/game/web-game
+npm i -g dotenv
+npm i -g dotenv-cli
+
+=============================================
+
+Chạy lệnh start môi trường:
+
+cd /home/game/web-game
+pm2 start  npm  --namespace lyz --name lyz_login1       --  run login1
+pm2 start  npm  --namespace lyz --name lyz_game1        --  run game1
+pm2 start  npm  --namespace lyz --name lyz_savedata1    --  run data1
+pm2 start  npm  --namespace lyz --name lyz_login1       --  run log1
+pm2 start  npm  --namespace lyz --name lyz_wgbackend    --  run backend
+pm2 start  npm  --namespace lyz --name lyz_chat1        --  run chat1
+pm2 start  npm  --namespace lyz --name lyz_cross1       --  run cross1
+
+Chạy lệnh start game:
+
+cd /home/game/web-game
+pm2 start all
+
+Lệnh stop game:
+
+cd /home/game/web-game
+pm2 stop all
+
+=============================================
+
+Link game: http://ipvps:891
+
+Thay ip client apk:
+/assets/apps/H564D19F0/www/manifest.json
+
+CDK:
+http://IP:81/ht/cdk
+pass gm: sourcegamevn
+
+GM:
+http://IP:81/ht
+
+=============================================

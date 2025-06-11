@@ -1,0 +1,2 @@
+#！/bin/bash
+npx prisma generate --schema ./prisma/schema1.prisma;npx prisma generate --schema ./prisma/schema2.prisma;npx prisma generate --schema ./prisma/schema3.prisma;npx prisma generate --schema ./prisma/schema4.prisma

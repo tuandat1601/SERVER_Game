@@ -1,0 +1,63 @@
+
+@host=http://127.0.0.1:3000
+//@host=http://192.168.0.57:3000
+
+###
+{{host}}
+
+###登录验证
+POST {{host}}/login
+Content-Type: application/json
+
+{
+    "account":"john",
+    "password":"changeme",
+    "serverid": 1
+} 
+
+###
+{{host}}/profile
+Content-Type: application/json
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTY3ODI2OTA2NSwiZXhwIjoxNjc4MjY5NDI1fQ.qJqRn6vbL_5sMN2EdSDMlQg0yTwvbGRKXq9f16U7tws
+
+###导表
+POST {{host}}/excel/p/yd99
+Content-Type: application/json
+
+
+###添加
+POST {{host}}/role
+Content-Type: application/json
+
+{
+    "account":"yd_role104",
+    "name":"大表哥4",
+    "serverid": 1,
+} 
+
+
+###查询所有
+Get {{host}}/role
+content-type: application/json
+
+###根据ID查询
+Get {{host}}/role/e06c7fe6-49df-4d22-b958-ca68618e843e
+content-type: application/json
+
+
+
+
+
+###更新
+Patch {{host}}/role/46e29f61-af33-4a62-9ba6-8d3058cc0a1f
+content-type: application/json
+
+{
+    "rolelevel": 3,
+    "gameLevels": 3,
+}
+
+
+###删除
+Delete {{host}}/role/46e29f61-af33-4a62-9ba6-8d3058cc0a1f
+content-type: application/json

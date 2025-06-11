@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// 运行prisma migrate 生成数据表和 client：
+// npx prisma migrate dev --name init
+
+// 如果后续有修改schema.prisma ，那么需要重新生成数据表和client
+// npx prisma migrate dev --name change
+
+//迁移
+// npx prisma migrate dev --name prisma1_init --schema ./prisma/schema1.prisma
+// npx prisma migrate dev --name prisma2_init --schema ./prisma/schema2.prisma
+// 
+// npx prisma migrate dev --name prisma1_change --schema ./prisma/schema1.prisma
+// npx prisma migrate dev --name prisma2_change --schema ./prisma/schema2.prisma
+
+//生成
+// npx prisma generate --schema ./prisma/schema1.prisma
+// npx prisma generate --schema ./prisma/schema2.prisma
+// 游戏数据库
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/client1"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("GAMEDB_URL")
+}
+
+//玩家角色基础信息
+model Role {
+  id             String   @id @db.Char(16)
+  userid         String   @db.VarChar(64)
+  name           String   @db.VarChar(18)
+  serverid       Int      @default(0) @db.UnsignedSmallInt()
+  originServerid Int      @default(0) @db.UnsignedSmallInt()
+  status         Int      @default(0) @db.UnsignedSmallInt()
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+
+  @@index([userid])
+  @@index([serverid, userid])
+}
+
+//数字信息存储
+//角色等级，关卡进度
+//info  系统等级
+model RoleInfo {
+  id         String   @id @db.Char(16)
+  serverid   Int      @default(1) @db.UnsignedSmallInt()
+  rolelevel  Int      @default(1) @db.UnsignedMediumInt()
+  exp        Int      @default(0) @db.UnsignedInt()
+  gamelevels Int      @default(1) @db.UnsignedMediumInt()
+  info       Json
+  merge      Int      @default(0) @db.UnsignedSmallInt()
+  updatedAt  DateTime @default(now()) @updatedAt
+}
+
+//英雄库
+model RoleHero {
+  id        String   @id @db.Char(16)
+  serverid  Int      @default(1) @db.UnsignedSmallInt()
+  info      Json
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+//道具库
+model RoleItem {
+  id        String   @id @db.Char(16)
+  serverid  Int      @default(1) @db.UnsignedSmallInt()
+  info      Json
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+//装备库
+model RoleEquip {
+  id        String   @id @db.Char(16)
+  serverid  Int      @default(1) @db.UnsignedSmallInt()
+  info      Json
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+//邮件
+model Email {
+  id       BigInt   @id @db.UnsignedBigInt()
+  serverid Int      @default(0) @db.UnsignedSmallInt()
+  title    String   @db.VarChar(16)
+  content  String   @db.VarChar(400)
+  items    Json     @default("{}")
+  state    Int      @db.UnsignedSmallInt()
+  sender   String   @db.VarChar(16)
+  owner    String   @db.VarChar(16)
+  time     DateTime
+
+  @@index([serverid, owner, time, state])
+}
+
+//服务器全局数据表
+model ServerInfo {
+  id        Int      @id @default(autoincrement())
+  serverid  Int      @default(0) @db.UnsignedSmallInt()
+  info      Json     @default("{}")
+  nodeid    Int      @default(1) @db.UnsignedSmallInt()
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([serverid])
+}
+
+model ArenaRank {
+  //角色ID
+  id        String   @id @db.Char(16)
+  //服务器ID
+  serverid  Int      @default(0) @db.UnsignedSmallInt()
+  //积分
+  p         Int      @default(0) @db.SmallInt()
+  //扩展 战力相关信息 角色通用信息 角色名称 ICON  等级 战力
+  info      Json     @default("{}")
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([serverid, p])
+}
+
+model ArenaLog {
+  //日志ID
+  id Int @id @default(autoincrement()) @db.UnsignedInt()
+
+  //赛季ID
+  seasonid Int @default(0) @db.SmallInt()
+
+  //服务器ID
+  serverid Int @default(0) @db.UnsignedSmallInt()
+
+  //被攻击角色ID
+  roleid String @db.Char(16)
+
+  //攻击者ID
+  atkid     String   @db.Char(16)
+  //积分
+  point     Int      @default(0) @db.SmallInt()
+  //时间
+  time      DateTime @default(now())
+  //状态  EArenaSatate 0 未执行扣分  1已经执行扣分 2可删除
+  state     Int      @db.SmallInt()
+  //扩展 RoleCommonEntity
+  info      Json     @default("{}")
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([serverid, seasonid, state])
+}
+
+//跨服竞技场日志
+model CrossArenaLog {
+  //日志ID
+  id Int @id @default(autoincrement()) @db.UnsignedInt()
+
+  //赛季ID
+  seasonid Int @default(0) @db.SmallInt()
+
+  //跨服服务器ID
+  crossServerid Int @default(0) @db.UnsignedSmallInt()
+  //服务器ID
+  serverid      Int @default(0) @db.UnsignedSmallInt()
+
+  //被攻击角色ID
+  roleid String @db.Char(16)
+
+  //攻击者ID
+  atkid     String   @db.Char(16)
+  //积分
+  point     Int      @default(0) @db.SmallInt()
+  //时间
+  time      DateTime @default(now())
+  //状态  EArenaSatate 0 未执行扣分  1已经执行扣分 2可删除
+  state     Int      @db.SmallInt()
+  //扩展 RoleCommonEntity
+  info      Json     @default("{}")
+  updatedAt DateTime @default(now())
+
+  @@index([crossServerid, seasonid, state])
+}
+
+model GameRank {
+  //排行榜ID
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt()
+  //排行榜类型
+  type      Int      @db.UnsignedSmallInt()
+  //角色ID
+  roleid    String   @db.Char(16)
+  //服务器ID
+  serverid  Int      @default(0) @db.UnsignedSmallInt()
+  //数值
+  val       Int      @default(0) @db.Int()
+  //扩展 战力相关信息 角色通用信息 角色名称 ICON  等级 战力
+  info      Json     @default("{}")
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([type, serverid, roleid])
+  @@index([type, serverid, val])
+}
+
+//聊天记录
+model ChatLog {
+  //日志ID
+  id       Int @id @default(autoincrement()) @db.UnsignedInt()
+  //服务器ID
+  serverid Int @default(0) @db.UnsignedSmallInt()
+  //聊天类型
+  type     Int @db.UnsignedSmallInt()
+
+  //发送者
+  sender String @default("") @db.VarChar(16)
+  //接受者
+  target String @default("") @db.VarChar(16)
+  //聊天内容
+  msg    String
+
+  //扩展 附加信息 发送者 头像 名称 等级
+  info Json @default("{}")
+
+  createdAt DateTime @default(now())
+
+  //updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+  @@index([serverid, createdAt])
+  @@index([serverid, sender, createdAt])
+}
+
+//公会
+model Guild {
+  //ID
+  id            Int    @id @default(autoincrement()) @db.UnsignedInt()
+  //服务器ID
+  serverid      Int    @default(0) @db.UnsignedSmallInt()
+  //跨服服务器ID
+  crossServerid Int    @default(0) @db.UnsignedSmallInt()
+  //公会ID
+  guildid       String @db.Char(16) @unique
+  //公会名
+  name          String @default("") @db.VarChar(16)
+  //扩展 附加信息
+  info          Json   @default("{}")
+
+  createdAt DateTime @default(now())
+
+  @@index([serverid, crossServerid, guildid, name])
+}

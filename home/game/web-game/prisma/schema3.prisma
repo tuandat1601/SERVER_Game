@@ -1,0 +1,388 @@
+// 后台数据库
+generator client {
+    provider = "prisma-client-js"
+    output   = "../node_modules/@prisma/client3"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("BACKEND_URL")
+}
+
+//后台账号
+model user {
+    username  String   @id @db.VarChar(18)
+    nickname  String   @db.VarChar(18)
+    password  String   @db.VarChar(64)
+    roles     Json
+    auths     Json
+    info      Json     @default("{}")
+    status    String
+    createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+
+    //@@index([username])
+}
+
+//游戏平台配置
+model games {
+    id                Int                 @id @default(autoincrement()) @db.UnsignedSmallInt()
+    name              String              @db.VarChar(18)
+    secretkey         String              @db.VarChar(18)
+    sku               String              @db.VarChar(18)
+    serverNF          String              @db.VarChar(18)
+    //多个游戏节点URL地址
+    gameUrl           Json                @default("[]")
+    //支持的渠道 渠道参数 游戏公告
+    channels          Json
+    //白名单
+    whitelist         Json
+    //黑名单
+    blacklist         Json
+    //扩展信息
+    info              Json                @default("{}")
+    createdAt         DateTime            @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt         DateTime            @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+    Orders            Orders[]
+    game_backend_user game_backend_user[]
+    logins            logins[]
+}
+
+//服务器列表
+model servers {
+    // id       Int     @id @default(autoincrement()) @db.UnsignedMediumInt()
+    gameId   Int @db.UnsignedSmallInt()
+    serverId Int @db.UnsignedMediumInt()
+
+    //战区ID
+    zoneId Int @db.UnsignedSmallInt()
+
+    //冠名 否则用格式化名称
+    name     String? @db.VarChar(18)
+    //支持的渠道类型
+    channels Json
+
+    //游戏服务器节点URL配置
+    gameUrl String
+
+    //开启 维护 关闭
+    status    String
+    //流畅 爆满
+    workload  String
+    //新服？0 不是  1是
+    isNew     Int       @db.UnsignedSmallInt()
+    //开服时间
+    openTime  DateTime  @default(dbgenerated("NOW()")) @db.DateTime
+    //合服时间
+    mergeTime DateTime?
+
+    createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+
+    Orders Orders[]
+    // @@index([gameId, serverId])
+
+    //服务器扩展信息
+    info Json @default("{}")
+
+    //聊天服务器节点地址
+    chatIP String @default("")
+
+    @@id([gameId, serverId])
+}
+
+//战区表
+model zones {
+    id        Int      @id @default(autoincrement())
+    name      String   @db.VarChar(18)
+    gameId    Int      @db.UnsignedSmallInt()
+    createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+}
+
+// //渠道配置表
+// model channel {
+//     id        Int      @id @default(autoincrement())
+//     name      String   @db.VarChar(18)
+//     remark    String   @db.VarChar(18)
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @default(now()) @updatedAt
+// }
+
+//游戏后台玩家表
+model game_backend_user {
+    id            Int      @id @default(autoincrement()) @db.UnsignedInt()
+    channelUserId String   @db.VarChar(64)
+    games         games    @relation(fields: [gameId], references: [id])
+    gameId        Int      @db.UnsignedSmallInt()
+    //渠道类型
+    channelType   String
+    //渠道APP-id 一个渠道对应多个实例的 APP 参数配置
+    channelAppId  Int      @db.UnsignedSmallInt()
+    createdAt     DateTime @default(dbgenerated("NOW()")) @db.DateTime(0)
+    updatedAt     DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+    Orders        Orders[]
+    logins        logins[]
+
+    @@index([gameId, channelAppId, channelUserId])
+}
+
+//订单
+model Orders {
+    id Int @id @default(autoincrement()) @db.UnsignedInt()
+
+    serverId Int @db.UnsignedMediumInt()
+
+    games  games @relation(fields: [gameId], references: [id])
+    gameId Int   @db.UnsignedSmallInt()
+
+    //game_backend_user id
+    game_backend_user game_backend_user @relation(fields: [gameBackendUserId], references: [id])
+    //游戏后台玩家表ID
+    gameBackendUserId Int               @db.UnsignedInt()
+
+    //游戏账号ID 渠道前缀加+渠道用户ID
+    gameUserId      String    @db.VarChar(300)
+    //游戏角色ID
+    gameRoleId      String    @db.VarChar(16)
+    //游戏角色昵称
+    gameRoleName    String    @db.VarChar(18)
+    //购买的商品ID
+    shopId          Int       @db.UnsignedSmallInt()
+    //支付金额
+    paidAmount      Float     @db.Double()
+    //0等待支付  1已经支付
+    paid            Int       @db.UnsignedSmallInt()
+    //支付时间
+    paidTime        DateTime?
+    //游戏服务器是否已经发送奖励 0 没有 1已经发送
+    delivered       Int       @db.UnsignedSmallInt()
+    createdAt       DateTime  @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt       DateTime  @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+    servers         servers?  @relation(fields: [serversGameId, serversServerId], references: [gameId, serverId])
+    serversGameId   Int?      @db.UnsignedSmallInt()
+    serversServerId Int?      @db.UnsignedMediumInt()
+    info            Json      @default("{}")
+
+    @@index([createdAt, gameId, serverId, gameUserId, gameRoleId])
+}
+
+//登录表 验证和信息手机
+model logins {
+    id                Int               @id @default(autoincrement()) @db.UnsignedInt()
+    games             games             @relation(fields: [gameId], references: [id])
+    gameId            Int               @db.UnsignedSmallInt()
+    //渠道类型
+    channelType       String
+    //渠道APP-id 一个渠道对应多个实例的 APP 参数配置
+    channelAppId      Int               @db.UnsignedSmallInt()
+    //game_backend_user id
+    game_backend_user game_backend_user @relation(fields: [gameBackendUserId], references: [id])
+    //游戏后台玩家账号ID    
+    gameBackendUserId Int               @db.UnsignedInt()
+    //游戏账号ID
+    gameUserId        String            @db.VarChar(300)
+    //登录的客户端IP
+    ipAddress         String
+    //登录设备所用操作系统
+    deviceOs          String            @default("")
+    //登录设备生产商
+    deviceVender      String            @default("")
+    //登录设备ID
+    deviceId          String            @default("")
+    //登录设备型号
+    deviceType        String            @default("")
+    //渠道第三方SDK登录token
+    channelToken      String            @db.VarChar(2048)
+    //账号选服登录验证token
+    serverLoginToken  String
+
+    updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+
+    @@index([updatedAt, gameId, gameUserId])
+}
+
+//激活码配置表
+model game_code_info {
+    id        Int    @id @default(autoincrement()) @db.UnsignedInt()
+    gameId    Int    @db.UnsignedSmallInt()
+    codeName  String
+    //奖励邮件ID
+    emailId   Int
+    //长度
+    len       Int
+    //是否是通用码 通用码只生成一个 0 独码  1通用
+    universal Int
+    //重复激活次数
+    repe      Int
+
+    isuse             Int
+    //有效时间
+    endTime           DateTime
+    createdAt         DateTime            @default(dbgenerated("NOW()")) @db.DateTime
+    updatedAt         DateTime            @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+    game_code_used    game_code_used[]
+    game_comcode_used game_comcode_used[]
+}
+
+//激活码生成和独码使用表
+model game_code_used {
+    id             Int            @id @default(autoincrement()) @db.UnsignedInt()
+    //game_code_info id
+    game_code_info game_code_info @relation(fields: [codeinfoId], references: [id])
+    codeinfoId     Int            @db.UnsignedInt()
+
+    gameId  Int      @db.UnsignedSmallInt()
+    //游戏角色ID
+    roleId  String   @db.VarChar(16)
+    //生成的激活码
+    code    String
+    //是否已经用过 0没有 1已经使用
+    used    Int      @db.UnsignedSmallInt()
+    //激活使用时间
+    actTime DateTime
+
+    @@index([code, gameId, roleId, codeinfoId, used])
+}
+
+//通码使用表
+model game_comcode_used {
+    id             Int            @id @default(autoincrement()) @db.UnsignedInt()
+    //game_code_info id
+    game_code_info game_code_info @relation(fields: [codeinfoId], references: [id])
+    codeinfoId     Int            @db.UnsignedInt()
+
+    gameId  Int      @db.UnsignedSmallInt()
+    //游戏角色ID
+    roleId  String   @db.VarChar(16)
+    //生成的激活码
+    code    String
+    //激活使用时间
+    actTime DateTime
+
+    @@index([code, gameId, roleId, codeinfoId])
+}
+
+//激活码邮件奖励表
+model code_email_award {
+    id       Int    @id @default(autoincrement()) @db.UnsignedInt()
+    serverId Int    @db.UnsignedMediumInt()
+    gameId   Int    @db.UnsignedSmallInt()
+    title    String @db.VarChar(16)
+    content  String @db.VarChar(400)
+    items    Json   @default("{}")
+
+    @@index([id])
+}
+
+//奇葩-自动返利表
+model qipa_rebate {
+    id          Int @id @default(autoincrement()) @db.UnsignedInt()
+    //研发自己的游戏ID
+    cp_gameId   Int @db.UnsignedSmallInt()
+    service_id  Int @db.UnsignedMediumInt()
+    //渠道游戏ID
+    game_id     Int @db.UnsignedInt()
+    //返利编号 唯一 判断是否重复发放
+    rebate_no   Int @db.UnsignedInt()
+    //返利类型 1、单笔返利
+    rebate_type Int @db.UnsignedSmallInt()
+
+    //游戏订单
+    game_order_no String
+
+    //用户唯一标识（发行的userId）
+    user_id String
+
+    //角色ID（研发角色id）
+    role_id String
+
+    //角色名称，php的url编码会把星号*转为%2A，java、C#的则保留，发行是java，不要把*编码成%2A
+    role_name String
+
+    //当前订单支付金额（人民币，单位：元）
+    pay_money String
+
+    //返利福利（游戏虚拟币），按游戏内充值的来，例如：元宝或金币或钻石，充值返什么，邮件发送
+    gold Int @db.UnsignedInt()
+
+    //游戏服务器是否已经发送奖励邮件 0 没有 1已经发送
+    delivered Int @db.UnsignedSmallInt()
+
+    createdAt DateTime @default(now())
+
+    @@index([rebate_no])
+}
+
+//奇葩-活动道具表
+model qipa_active {
+    id Int @id @default(autoincrement()) @db.UnsignedInt()
+
+    //活动序号(判断唯一 不做重复发放)
+    active_id Int @db.UnsignedInt()
+
+    //研发自己的游戏ID
+    cp_gameId Int @db.UnsignedSmallInt()
+
+    //区服ID (需要校验角色id与服务器id是否匹配)
+    server_id Int @db.UnsignedMediumInt()
+    //渠道游戏ID
+    game_id   Int @db.UnsignedInt()
+
+    //0 免费 1 付费
+    is_freee Int @db.UnsignedSmallInt()
+
+    //价值：默认0 单位：元(用户后期的结算付费需记录)
+    money Int @db.UnsignedInt()
+
+    //代金券 金额(元)（不参与签名）
+    coupon_amount Int @db.UnsignedInt()
+
+    //邮件标题
+    title String
+
+    //邮件内容
+    content String
+
+    //角色ID (研发上报的角色ID)
+    player_id String
+
+    //发放物品 固定格式 例如： [{"mid":"110","amount":10,"bind":1,"type":4},{"mid":"120","amount":10,"bind":1,"type":4}]
+    //mid :道具物品ID amount:数量 bind: 是否绑定/是否可以交易 type 物品类型 需研发提供道具列表配置
+    item String @db.VarChar(2048)
+
+    //订单ID 付费道具订单号存储使用 非付费为activity_id 返利需要验证订单号可以使用该订单号，研发返利验证订单号可以使用这个来识别道具商城订单。
+    order_id String
+
+    //用户ID 用户唯一标识
+    user_id String
+
+    //不是必填项 研发自定义分组ID 付费 订单才有 不参与签名
+    cp_gift_group String
+
+    //测试订单 1 是 0 否 不参与签名
+    is_test String
+
+    //游戏服务器是否已经发送奖励邮件 0 没有 1已经发送
+    delivered Int @db.UnsignedSmallInt()
+
+    createdAt DateTime @default(now())
+
+    @@index([active_id])
+}
+
+//登录服务器记录 统计服务器注册角色数量
+model loginServerLog {
+    id                Int    @id @default(autoincrement()) @db.UnsignedInt()
+    gameId            Int    @db.UnsignedSmallInt()
+    //游戏后台玩家账号ID    
+    gameBackendUserId Int    @db.UnsignedInt()
+    //游戏账号ID
+    gameUserId        String @db.VarChar(300)
+    //服务器ID
+    serverId          Int    @db.UnsignedMediumInt()
+
+    createdAt DateTime @default(now())
+
+    @@index([gameId, serverId, gameUserId])
+}
