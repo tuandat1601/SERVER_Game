@@ -1,0 +1,1 @@
+import{a as r}from"./data-eba8857e.js";import{k as n,aG as l}from"./index-bd88d923.js";function c(){const o=n(l(r,!0)),a=[{label:"ID",prop:"id"},{label:"日期",prop:"date"},{label:"姓名",prop:"name"}];function t(s,u,e){e.preventDefault()}return{columns:a,dataList:o,showMouseMenu:t}}export{c as useColumns};

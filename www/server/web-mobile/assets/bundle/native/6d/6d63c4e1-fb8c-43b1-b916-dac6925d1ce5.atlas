@@ -1,0 +1,356 @@
+
+hero_punkquanjishou_1.png
+size: 1923,475
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+PunkBoxer/baodian_001
+  rotate: false
+  xy: 165, 2
+  size: 158, 138
+  orig: 200, 200
+  offset: 17, 38
+  index: -1
+PunkBoxer/baodian_002
+  rotate: false
+  xy: 1343, 229
+  size: 154, 102
+  orig: 200, 200
+  offset: 16, 42
+  index: -1
+PunkBoxer/baodian_003
+  rotate: true
+  xy: 1664, 215
+  size: 128, 147
+  orig: 200, 200
+  offset: 40, 25
+  index: -1
+PunkBoxer/baodian_004
+  rotate: true
+  xy: 1050, 151
+  size: 128, 117
+  orig: 200, 200
+  offset: 34, 52
+  index: -1
+PunkBoxer/dg_0001
+  rotate: false
+  xy: 914, 258
+  size: 134, 199
+  orig: 147, 212
+  offset: 8, 7
+  index: -1
+PunkBoxer/dg_0002
+  rotate: false
+  xy: 1050, 281
+  size: 122, 192
+  orig: 147, 212
+  offset: 19, 8
+  index: -1
+PunkBoxer/dg_0003
+  rotate: true
+  xy: 861, 165
+  size: 91, 174
+  orig: 147, 212
+  offset: 49, 7
+  index: -1
+PunkBoxer/dg_0004
+  rotate: true
+  xy: 1174, 257
+  size: 73, 167
+  orig: 147, 212
+  offset: 62, 8
+  index: -1
+PunkBoxer/texiao2_0001
+  rotate: false
+  xy: 2, 142
+  size: 202, 216
+  orig: 212, 243
+  offset: 2, 18
+  index: -1
+PunkBoxer/texiao2_0002
+  rotate: true
+  xy: 206, 169
+  size: 189, 222
+  orig: 212, 243
+  offset: 14, 11
+  index: -1
+PunkBoxer/texiao2_0003
+  rotate: true
+  xy: 430, 185
+  size: 151, 198
+  orig: 212, 243
+  offset: 53, 11
+  index: -1
+PunkBoxer/texiao2_0004
+  rotate: false
+  xy: 630, 158
+  size: 70, 178
+  orig: 212, 243
+  offset: 127, 16
+  index: -1
+PunkBoxer/tx5_0001
+  rotate: false
+  xy: 1664, 345
+  size: 163, 128
+  orig: 178, 158
+  offset: 6, 18
+  index: -1
+PunkBoxer/tx5_0002
+  rotate: true
+  xy: 325, 2
+  size: 165, 130
+  orig: 178, 158
+  offset: 6, 15
+  index: -1
+PunkBoxer/tx5_0003
+  rotate: false
+  xy: 1500, 343
+  size: 162, 130
+  orig: 178, 158
+  offset: 6, 15
+  index: -1
+PunkBoxer/tx5_0004
+  rotate: true
+  xy: 625, 2
+  size: 154, 126
+  orig: 178, 158
+  offset: 9, 17
+  index: -1
+PunkBoxer/tx5_0005
+  rotate: false
+  xy: 2, 2
+  size: 161, 138
+  orig: 178, 158
+  offset: 10, 4
+  index: -1
+PunkBoxer/tx5_0006
+  rotate: false
+  xy: 1174, 332
+  size: 162, 141
+  orig: 178, 158
+  offset: 9, 3
+  index: -1
+PunkBoxer/tx5_0007
+  rotate: false
+  xy: 457, 37
+  size: 166, 146
+  orig: 178, 158
+  offset: 9, 3
+  index: -1
+PunkBoxer/tx5_0008
+  rotate: true
+  xy: 753, 3
+  size: 158, 139
+  orig: 178, 158
+  offset: 15, 8
+  index: -1
+PunkBoxer/tx5_0009
+  rotate: false
+  xy: 1338, 333
+  size: 160, 140
+  orig: 178, 158
+  offset: 13, 7
+  index: -1
+PunkBoxer/tx5_0010
+  rotate: false
+  xy: 1500, 207
+  size: 148, 134
+  orig: 178, 158
+  offset: 21, 14
+  index: -1
+PunkBoxer/tx5_0011
+  rotate: false
+  xy: 1040, 13
+  size: 144, 136
+  orig: 178, 158
+  offset: 24, 16
+  index: -1
+PunkBoxer/tx5_0012
+  rotate: false
+  xy: 894, 19
+  size: 144, 144
+  orig: 178, 158
+  offset: 21, 11
+  index: -1
+PunkBoxer/tx5_0013
+  rotate: false
+  xy: 1186, 6
+  size: 144, 144
+  orig: 178, 158
+  offset: 20, 11
+  index: -1
+PunkBoxer/tx_0001
+  rotate: false
+  xy: 2, 399
+  size: 480, 74
+  orig: 630, 86
+  offset: 28, 4
+  index: -1
+PunkBoxer/tx_0002
+  rotate: false
+  xy: 2, 360
+  size: 476, 37
+  orig: 630, 86
+  offset: 84, 25
+  index: -1
+PunkBoxer/tx_0003
+  rotate: false
+  xy: 484, 459
+  size: 468, 14
+  orig: 630, 86
+  offset: 133, 37
+  index: -1
+beiji
+  rotate: true
+  xy: 1332, 16
+  size: 134, 89
+  orig: 135, 96
+  offset: 0, 7
+  index: -1
+body
+  rotate: true
+  xy: 1813, 210
+  size: 129, 103
+  orig: 129, 109
+  offset: 0, 6
+  index: -1
+body1
+  rotate: false
+  xy: 1169, 152
+  size: 129, 103
+  orig: 129, 103
+  offset: 0, 0
+  index: -1
+fennu
+  rotate: true
+  xy: 1829, 341
+  size: 132, 92
+  orig: 132, 97
+  offset: 0, 5
+  index: -1
+guanzi
+  rotate: true
+  xy: 702, 163
+  size: 110, 157
+  orig: 110, 157
+  offset: 0, 0
+  index: -1
+jianjia-R
+  rotate: false
+  xy: 1423, 36
+  size: 109, 114
+  orig: 109, 115
+  offset: 0, 1
+  index: -1
+jiao-L
+  rotate: false
+  xy: 1797, 74
+  size: 66, 47
+  orig: 66, 47
+  offset: 0, 0
+  index: -1
+jiao-R
+  rotate: false
+  xy: 1785, 20
+  size: 63, 52
+  orig: 65, 52
+  offset: 2, 0
+  index: -1
+shangbi-L
+  rotate: true
+  xy: 1718, 32
+  size: 75, 65
+  orig: 80, 70
+  offset: 1, 4
+  index: -1
+shangbi-R
+  rotate: true
+  xy: 1387, 152
+  size: 75, 84
+  orig: 75, 87
+  offset: 0, 3
+  index: -1
+shou-L
+  rotate: true
+  xy: 1636, 3
+  size: 98, 80
+  orig: 98, 83
+  offset: 0, 3
+  index: -1
+shou-R
+  rotate: false
+  xy: 1539, 103
+  size: 103, 102
+  orig: 104, 106
+  offset: 1, 4
+  index: -1
+shou-R1
+  rotate: true
+  xy: 1534, 2
+  size: 99, 100
+  orig: 106, 102
+  offset: 0, 2
+  index: -1
+shoubi-L
+  rotate: true
+  xy: 1300, 152
+  size: 75, 85
+  orig: 76, 85
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 703, 275
+  size: 182, 209
+  orig: 182, 209
+  offset: 0, 0
+  index: -1
+toufa
+  rotate: false
+  xy: 484, 338
+  size: 217, 119
+  orig: 217, 119
+  offset: 0, 0
+  index: -1
+touying
+  rotate: false
+  xy: 457, 6
+  size: 45, 29
+  orig: 49, 31
+  offset: 2, 1
+  index: -1
+xiaobi-R
+  rotate: true
+  xy: 1644, 109
+  size: 96, 93
+  orig: 96, 93
+  offset: 0, 0
+  index: -1
+xiaobi-R2
+  rotate: true
+  xy: 1797, 123
+  size: 85, 89
+  orig: 96, 93
+  offset: 6, 2
+  index: -1
+yaodai
+  rotate: true
+  xy: 1739, 122
+  size: 91, 56
+  orig: 91, 56
+  offset: 0, 0
+  index: -1
+youtui-R
+  rotate: true
+  xy: 1473, 152
+  size: 53, 64
+  orig: 54, 64
+  offset: 0, 0
+  index: -1
+zuotui-L
+  rotate: false
+  xy: 1865, 67
+  size: 51, 54
+  orig: 54, 63
+  offset: 3, 0
+  index: -1

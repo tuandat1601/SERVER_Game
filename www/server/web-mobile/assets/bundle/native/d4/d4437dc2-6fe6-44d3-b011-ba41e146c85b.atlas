@@ -1,0 +1,118 @@
+
+boy.png
+size: 972,1041
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+boyshoua1
+  rotate: true
+  xy: 832, 461
+  size: 124, 135
+  orig: 124, 142
+  offset: 0, 0
+  index: -1
+boyshoua2
+  rotate: false
+  xy: 631, 68
+  size: 167, 123
+  orig: 167, 123
+  offset: 0, 0
+  index: -1
+boyshoub1
+  rotate: true
+  xy: 832, 334
+  size: 125, 131
+  orig: 130, 161
+  offset: 5, 15
+  index: -1
+boyshoub2
+  rotate: false
+  xy: 800, 98
+  size: 127, 87
+  orig: 168, 140
+  offset: 41, 0
+  index: -1
+boyst
+  rotate: true
+  xy: 633, 845
+  size: 194, 309
+  orig: 194, 309
+  offset: 0, 0
+  index: -1
+boytou
+  rotate: false
+  xy: 2, 2
+  size: 497, 436
+  orig: 497, 436
+  offset: 0, 0
+  index: -1
+boytuia
+  rotate: true
+  xy: 811, 187
+  size: 145, 146
+  orig: 145, 146
+  offset: 0, 0
+  index: -1
+boytuib
+  rotate: false
+  xy: 501, 16
+  size: 128, 169
+  orig: 132, 169
+  offset: 0, 0
+  index: -1
+boytuib1
+  rotate: false
+  xy: 614, 193
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: -1
+boytuib2
+  rotate: true
+  xy: 618, 401
+  size: 184, 212
+  orig: 195, 212
+  offset: 11, 0
+  index: -1
+boywq1
+  rotate: false
+  xy: 2, 440
+  size: 614, 499
+  orig: 614, 499
+  offset: 0, 0
+  index: -1
+boywq2
+  rotate: true
+  xy: 618, 587
+  size: 256, 352
+  orig: 256, 352
+  offset: 0, 0
+  index: -1
+yan1
+  rotate: true
+  xy: 501, 248
+  size: 190, 111
+  orig: 190, 111
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: false
+  xy: 614, 295
+  size: 195, 104
+  orig: 196, 104
+  offset: 1, 0
+  index: -1
+yingzi
+  rotate: false
+  xy: 2, 941
+  size: 629, 98
+  orig: 652, 102
+  offset: 17, 1
+  index: -1
+zui1
+  rotate: false
+  xy: 736, 252
+  size: 65, 41
+  orig: 65, 41
+  offset: 0, 0
+  index: -1

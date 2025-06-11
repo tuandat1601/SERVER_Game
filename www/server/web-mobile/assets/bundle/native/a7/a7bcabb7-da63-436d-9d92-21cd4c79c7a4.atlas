@@ -1,0 +1,90 @@
+
+RMW_lt_camp_ani.png
+size: 580,265
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: false
+  xy: 342, 34
+  size: 100, 101
+  orig: 102, 103
+  offset: 1, 1
+  index: -1
+tx_SequenceFire_157_01
+  rotate: false
+  xy: 254, 12
+  size: 86, 123
+  orig: 90, 125
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_02
+  rotate: false
+  xy: 277, 137
+  size: 99, 126
+  orig: 102, 128
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_03
+  rotate: false
+  xy: 86, 6
+  size: 83, 132
+  orig: 88, 134
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_04
+  rotate: false
+  xy: 2, 2
+  size: 82, 136
+  orig: 86, 138
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_05
+  rotate: false
+  xy: 171, 5
+  size: 81, 133
+  orig: 86, 136
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_06
+  rotate: true
+  xy: 378, 189
+  size: 74, 132
+  orig: 78, 135
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_07
+  rotate: true
+  xy: 444, 83
+  size: 72, 132
+  orig: 76, 134
+  offset: 2, 1
+  index: -1
+tx_SequenceFire_157_08
+  rotate: true
+  xy: 451, 9
+  size: 72, 107
+  orig: 76, 109
+  offset: 2, 1
+  index: -1
+yingdi1
+  rotate: true
+  xy: 512, 157
+  size: 106, 66
+  orig: 106, 66
+  offset: 0, 0
+  index: -1
+yingdi2
+  rotate: false
+  xy: 2, 140
+  size: 273, 123
+  orig: 273, 123
+  offset: 0, 0
+  index: -1
+yingzi
+  rotate: false
+  xy: 342, 10
+  size: 107, 22
+  orig: 107, 22
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,146 @@
+
+girl.png
+size: 1254,1013
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fa
+  rotate: false
+  xy: 610, 424
+  size: 511, 587
+  orig: 511, 587
+  offset: 0, 0
+  index: -1
+qun
+  rotate: false
+  xy: 2, 120
+  size: 528, 293
+  orig: 528, 293
+  offset: 0, 0
+  index: -1
+shou1a
+  rotate: true
+  xy: 1123, 732
+  size: 137, 129
+  orig: 137, 231
+  offset: 0, 102
+  index: -1
+shou1b
+  rotate: false
+  xy: 2, 18
+  size: 147, 100
+  orig: 147, 100
+  offset: 0, 0
+  index: -1
+shou2a
+  rotate: false
+  xy: 1123, 445
+  size: 102, 101
+  orig: 102, 101
+  offset: 0, 0
+  index: -1
+shou2b
+  rotate: false
+  xy: 151, 26
+  size: 94, 92
+  orig: 110, 92
+  offset: 0, 0
+  index: -1
+shou2c
+  rotate: true
+  xy: 532, 339
+  size: 74, 67
+  orig: 74, 68
+  offset: 0, 0
+  index: -1
+st
+  rotate: true
+  xy: 1123, 871
+  size: 140, 129
+  orig: 140, 129
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 2, 415
+  size: 596, 606
+  orig: 596, 606
+  offset: 0, 0
+  index: -1
+tuib1
+  rotate: false
+  xy: 565, 115
+  size: 28, 39
+  orig: 72, 128
+  offset: 22, 40
+  index: -1
+tuib2
+  rotate: false
+  xy: 1227, 506
+  size: 22, 40
+  orig: 62, 135
+  offset: 20, 43
+  index: -1
+tuic1
+  rotate: true
+  xy: 1227, 441
+  size: 20, 11
+  orig: 56, 33
+  offset: 18, 11
+  index: -1
+tuic2
+  rotate: true
+  xy: 565, 60
+  size: 53, 27
+  orig: 53, 27
+  offset: 0, 0
+  index: -1
+wq1b
+  rotate: true
+  xy: 595, 2
+  size: 319, 355
+  orig: 319, 355
+  offset: 0, 0
+  index: -1
+wq2
+  rotate: false
+  xy: 952, 8
+  size: 284, 313
+  orig: 284, 314
+  offset: 0, 1
+  index: -1
+yan1
+  rotate: true
+  xy: 1123, 548
+  size: 182, 107
+  orig: 182, 107
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: true
+  xy: 532, 156
+  size: 181, 61
+  orig: 181, 62
+  offset: 0, 1
+  index: -1
+yingzi
+  rotate: false
+  xy: 610, 323
+  size: 630, 99
+  orig: 666, 105
+  offset: 23, 1
+  index: -1
+zui
+  rotate: true
+  xy: 1227, 463
+  size: 41, 18
+  orig: 42, 19
+  offset: 1, 1
+  index: -1
+zuigirl
+  rotate: true
+  xy: 532, 94
+  size: 60, 31
+  orig: 60, 31
+  offset: 0, 0
+  index: -1

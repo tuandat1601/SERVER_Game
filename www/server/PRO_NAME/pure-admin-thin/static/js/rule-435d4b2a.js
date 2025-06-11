@@ -1,0 +1,1 @@
+import{Y as s,aZ as i}from"./index-bd88d923.js";const g=s({nickname:[{required:!0,message:"用户昵称为必填项",trigger:"blur"}],username:[{required:!0,message:"用户名称为必填项",trigger:"blur"}],password:[{required:!0,message:"用户密码为必填项",trigger:"blur"}],phone:[{validator:(t,r,e)=>{r===""||i(r)?e():e(new Error("请输入正确的手机号码格式"))},trigger:"blur"}]});export{g as f};

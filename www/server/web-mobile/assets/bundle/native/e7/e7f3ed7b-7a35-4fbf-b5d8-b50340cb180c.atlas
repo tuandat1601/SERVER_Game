@@ -1,0 +1,160 @@
+
+qiangshou.png
+size: 1227,534
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fa2
+  rotate: false
+  xy: 511, 319
+  size: 213, 213
+  orig: 213, 213
+  offset: 0, 0
+  index: -1
+shou1bb
+  rotate: false
+  xy: 1093, 29
+  size: 126, 157
+  orig: 126, 167
+  offset: 0, 10
+  index: -1
+shou2a
+  rotate: true
+  xy: 1136, 419
+  size: 113, 88
+  orig: 113, 88
+  offset: 0, 0
+  index: -1
+shou2b
+  rotate: false
+  xy: 2, 3
+  size: 115, 79
+  orig: 115, 79
+  offset: 0, 0
+  index: -1
+shou2c2
+  rotate: false
+  xy: 1136, 319
+  size: 54, 63
+  orig: 63, 66
+  offset: 0, 1
+  index: -1
+shouzuob
+  rotate: false
+  xy: 149, 12
+  size: 67, 70
+  orig: 67, 70
+  offset: 0, 0
+  index: -1
+st
+  rotate: false
+  xy: 829, 319
+  size: 305, 213
+  orig: 305, 309
+  offset: 0, 96
+  index: -1
+t1a
+  rotate: true
+  xy: 829, 2
+  size: 135, 147
+  orig: 135, 147
+  offset: 0, 0
+  index: -1
+t1b
+  rotate: true
+  xy: 978, 188
+  size: 129, 241
+  orig: 129, 241
+  offset: 0, 0
+  index: -1
+t1c
+  rotate: false
+  xy: 762, 308
+  size: 63, 59
+  orig: 63, 59
+  offset: 0, 0
+  index: -1
+t2a
+  rotate: false
+  xy: 978, 26
+  size: 113, 160
+  orig: 113, 160
+  offset: 0, 0
+  index: -1
+t2a00
+  rotate: false
+  xy: 762, 139
+  size: 119, 167
+  orig: 119, 168
+  offset: 0, 0
+  index: -1
+t2b
+  rotate: false
+  xy: 726, 369
+  size: 101, 163
+  orig: 101, 163
+  offset: 0, 0
+  index: -1
+t2c
+  rotate: true
+  xy: 218, 3
+  size: 109, 56
+  orig: 109, 56
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 171, 114
+  size: 338, 418
+  orig: 338, 418
+  offset: 0, 0
+  index: -1
+wq1
+  rotate: true
+  xy: 2, 84
+  size: 448, 167
+  orig: 448, 167
+  offset: 0, 0
+  index: -1
+yan1
+  rotate: true
+  xy: 511, 128
+  size: 189, 129
+  orig: 189, 129
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: true
+  xy: 642, 137
+  size: 180, 118
+  orig: 180, 118
+  offset: 0, 0
+  index: -1
+yd
+  rotate: false
+  xy: 119, 7
+  size: 28, 75
+  orig: 28, 75
+  offset: 0, 0
+  index: -1
+yingzi
+  rotate: false
+  xy: 276, 7
+  size: 551, 105
+  orig: 551, 105
+  offset: 0, 0
+  index: -1
+zui0
+  rotate: true
+  xy: 1192, 322
+  size: 60, 33
+  orig: 60, 33
+  offset: 0, 0
+  index: -1
+zui1
+  rotate: false
+  xy: 1136, 384
+  size: 69, 33
+  orig: 69, 33
+  offset: 0, 0
+  index: -1

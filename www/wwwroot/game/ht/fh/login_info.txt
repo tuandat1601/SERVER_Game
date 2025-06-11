@@ -1,0 +1,7 @@
+{
+    "username": "admin",
+    "nickname": "\u7ba1\u7406\u5458",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwibmlja25hbWUiOiLnrqHnkIblkZgiLCJ0aW1lIjoiMjAyNC0xMS0wNVQxMDowNzo1NiswODowMCIsImlhdCI6MTczMDc3MjQ3NiwiZXhwIjoxNzMwNzc5Njc2fQ.fPcolV0Bd0NuFJwqkrZCKw8EfFlHGMWP2M0ZrJq7yOM",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwibmlja25hbWUiOiLnrqHnkIblkZgiLCJ0aW1lIjoiMjAyNC0xMS0wNVQxMDowNzo1NiswODowMCIsImlhdCI6MTczMDc3MjQ3NiwiZXhwIjoxNzMwNzc5Njc2fQ.fPcolV0Bd0NuFJwqkrZCKw8EfFlHGMWP2M0ZrJq7yOM",
+    "roles": "admin,gameAdmin"
+}
